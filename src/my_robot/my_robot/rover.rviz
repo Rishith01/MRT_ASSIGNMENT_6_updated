@@ -1,0 +1,9 @@
+Panels:
+  - Class: rviz/Displays
+    Display:
+      Name: Grid
+      Value: true
+
+      Name: RobotModel
+      Value: true
+

@@ -1,0 +1,3 @@
+[console_scripts]
+movement = my_robot.my_robot.movement:main
+

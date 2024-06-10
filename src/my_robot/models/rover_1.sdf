@@ -1,0 +1,575 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+    <world name="car_world">
+        <physics name="1ms" type="ignored">
+            <max_step_size>0.001</max_step_size>
+            <real_time_factor>1.0</real_time_factor>
+        </physics>
+        <plugin
+            filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics">
+        </plugin>
+        <plugin
+            filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands">
+        </plugin>
+        <plugin
+            filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster">
+        </plugin>
+
+        <light type="directional" name="sun">
+            <cast_shadows>true</cast_shadows>
+            <pose>0 0 10 0 0 0</pose>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>-0.5 0.1 -0.9</direction>
+        </light>
+
+        <model name="ground_plane">
+            <static>true</static>
+            <link name="link">
+                <collision name="collision">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    </plane>
+                </geometry>
+                </collision>
+                <visual name="visual">
+                <geometry>
+                    <plane>
+                    <normal>0 0 1</normal>
+                    <size>100 100</size>
+                    </plane>
+                </geometry>
+                <material>
+                    <ambient>0.8 0.8 0.8 1</ambient>
+                    <diffuse>0.8 0.8 0.8 1</diffuse>
+                    <specular>0.8 0.8 0.8 1</specular>
+                </material>
+                </visual>
+            </link>
+        </model>
+        <model name='vehicle_blue' canonical_link='chassis'>
+        	<plugin
+       			filename="libignition-gazebo-diff-drive-system.so"
+       			name="ignition::gazebo::systems::DiffDrive">
+       			<left_joint>left_wheel_joint</left_joint>
+       			<right_joint>right_wheel_joint</right_joint>
+       			<wheel_separation>1.2</wheel_separation>
+       			<wheel_radius>0.4</wheel_radius>
+       			<odom_publish_frequency>1</odom_publish_frequency>
+       			<topic>cmd_vel</topic>
+    			</plugin>
+    		<pose relative_to='world'>0 0 0 0 0 0</pose>
+    		<link name='chassis'>
+        		<pose relative_to='__model__'>0.5 0 0.375 0 0 0</pose>
+        	<inertial> <!--inertial properties of the link mass, inertia matix-->
+        		<mass>4</mass>
+        		<inertia>
+            			<ixx>0.12</ixx>
+            			<ixy>0</ixy>
+            			<ixz>0</ixz>
+            			<iyy>0.090133</iyy>
+            			<iyz>0</iyz>
+            			<izz>0.210133</izz>
+        		</inertia>
+    		</inertial>
+    		<visual name='visual'>
+        		<geometry>
+            			<box>
+                			<size>0.6 0.52 0.52</size>
+            			</box>
+        		</geometry>
+        		<!--let's add color to our link-->
+        		<material>
+            			<ambient>0.0 0.0 1.0 1</ambient>
+            			<diffuse>0.0 0.0 1.0 1</diffuse>
+            			<specular>0.0 0.0 1.0 1</specular>
+        		</material>
+    		</visual>
+    		<collision name='collision'>
+            <geometry>
+                <box>
+                    <size>0.6 0.52 0.52</size>
+                </box>
+            </geometry>
+        </collision>
+    </link>
+    <link name = 'gripper'>
+    	<pose relative_to = 'chassis'> 0.25 0 0.26 0 0 0</pose>
+    </link>
+    
+<link name = 'body_a'>
+    <pose relative_to ="gripper">0 0 0.175 -1.5707 0 0</pose>
+    <inertial>
+    	<mass>2</mass>
+    	<inertia>
+    		<ixx>0.001667</ixx>
+            	<ixy>0</ixy>
+            	<ixz>0</ixz>
+            	<iyy>0.020417</iyy>
+            	<iyz>0</iyz>
+            	<izz>0.022083</izz>
+    	</inertia>
+    </inertial>
+    <visual name='visual'>
+    <geometry>
+        <box>
+              <size>0.1 0.35 0.1</size>
+        </box>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <box>
+              <size>0.1 0.35 0.1</size>
+            </box>
+        </geometry>
+    </collision>
+</link>
+    
+
+<link name = 'body_b'>
+    <pose relative_to ="gripper">0.20 0 0.3 -1.5707 0 0</pose>
+    <inertial>
+    	<mass>2</mass>
+    	<inertia>
+    		<ixx>0.001667</ixx>
+            	<ixy>0</ixy>
+            	<ixz>0</ixz>
+            	<iyy>0.020417</iyy>
+            	<iyz>0</iyz>
+            	<izz>0.022083</izz>
+    	</inertia>
+    </inertial>
+    <visual name='visual'>
+    <geometry>
+        <box>
+              <size>0.3 0.1 0.1</size>
+        </box>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <box>
+              <size>0.3 0.1 0.1</size>
+            </box>
+        </geometry>
+    </collision>
+</link>
+    
+
+<link name = 'body_c'>
+    <pose relative_to ="gripper">0.30 0 0.1575 0 0 0</pose>
+    <inertial>
+    	<mass>2</mass>
+    	<inertia>
+    		<ixx>0.001667</ixx>
+            	<ixy>0</ixy>
+            	<ixz>0</ixz>
+            	<iyy>0.020417</iyy>
+            	<iyz>0</iyz>
+            	<izz>0.022083</izz>
+    	</inertia>
+    </inertial>
+    <visual name='visual'>
+    <geometry>
+        <cylinder>
+              <radius>0.025</radius>
+                <length>0.185</length>
+        </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.025</radius>
+                <length>0.185</length>
+        </cylinder>
+        </geometry>
+    </collision>
+</link>
+
+<link name = 'body_d'>
+    <pose relative_to ="gripper">0.30 0 0.04 -1.5707 0 0</pose>
+    <inertial>
+    	<mass>2</mass>
+    	<inertia>
+    		<ixx>0.001667</ixx>
+            	<ixy>0</ixy>
+            	<ixz>0</ixz>
+            	<iyy>0.020417</iyy>
+            	<iyz>0</iyz>
+            	<izz>0.022083</izz>
+    	</inertia>
+    </inertial>
+    <visual name='visual'>
+    <geometry>
+        <cylinder>
+              <radius>0.025</radius>
+              <length>0.1</length>
+        </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.025</radius>
+                <length>0.1</length>
+        </cylinder>
+        </geometry>z
+    </collision>
+</link>
+
+<link name = 'body_e'>
+    <pose relative_to ="gripper">0.30 0 0.1575 0 0 0</pose>
+    <inertial>
+    	<mass>2</mass>
+    	<inertia>
+    		<ixx>0.001667</ixx>
+            	<ixy>0</ixy>
+            	<ixz>0</ixz>
+            	<iyy>0.020417</iyy>
+            	<iyz>0</iyz>
+            	<izz>0.022083</izz>
+    	</inertia>
+    </inertial>
+    <visual name='visual'>
+    <geometry>
+        <cylinder>
+              <radius>0.0125</radius>
+              <length>0.1</length>
+        </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.025</radius>
+                <length>0.1</length>
+        </cylinder>
+        </geometry>
+    </collision>
+</link>
+
+
+
+
+<link name='left_wheel_back'>
+    <pose relative_to="chassis">-0.28 0.31 -0.20 -1.5707 0 0</pose>
+    <inertial>
+        <mass>1</mass>
+        <inertia>
+            <ixx>0.00849</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00849</iyy>
+            <iyz>0</iyz>
+            <izz>0.015312</izz>
+        </inertia>
+    </inertial>
+    <visual name='visual'>
+        <geometry>
+            <cylinder>
+                <radius>0.175</radius>
+                <length>0.1</length>
+            </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.4</radius>
+                <length>0.2</length>
+            </cylinder>
+        </geometry>
+    </collision>
+</link>
+<link name='left_wheel_front'>
+    <pose relative_to="chassis">0.28 0.31 -0.20 -1.5707 0 0</pose>
+    <inertial>
+        <mass>1</mass>
+        <inertia>
+            <ixx>0.00849</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00849</iyy>
+            <iyz>0</iyz>
+            <izz>0.015312</izz>
+        </inertia>
+    </inertial>
+    <visual name='visual'>
+        <geometry>
+            <cylinder>
+                <radius>0.175</radius>
+                <length>0.1</length>
+            </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.4</radius>
+                <length>0.2</length>
+            </cylinder>
+        </geometry>
+    </collision>
+</link>
+<link name='right_wheel_front'>
+    <pose relative_to="chassis">0.28 -0.31 -0.20 -1.5707 0 0</pose>
+    <inertial>
+        <mass>1</mass>
+        <inertia>
+            <ixx>0.00849</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00849</iyy>
+            <iyz>0</iyz>
+            <izz>0.015312</izz>
+        </inertia>
+    </inertial>
+    <visual name='visual'>
+        <geometry>
+            <cylinder>
+                <radius>0.175</radius>
+                <length>0.1</length>
+            </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.4</radius>
+                <length>0.2</length>
+            </cylinder>
+        </geometry>
+    </collision>
+</link>
+<link name='right_wheel_back'>
+    <pose relative_to="chassis">-0.28 -0.31 -0.20 -1.5707 0 0</pose>
+    <inertial>
+        <mass>1</mass>
+        <inertia>
+            <ixx>0.00849</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00849</iyy>
+            <iyz>0</iyz>
+            <izz>0.015312</izz>
+        </inertia>
+    </inertial>
+    <visual name='visual'>
+        <geometry>
+            <cylinder>
+                <radius>0.175</radius>
+                <length>0.1</length>
+            </cylinder>
+        </geometry>
+        <material>
+            <ambient>1.0 0.0 0.0 1</ambient>
+            <diffuse>1.0 0.0 0.0 1</diffuse>
+            <specular>1.0 0.0 0.0 1</specular>
+        </material>
+    </visual>
+    <collision name='collision'>
+        <geometry>
+            <cylinder>
+                <radius>0.4</radius>
+                <length>0.2</length>
+            </cylinder>
+        </geometry>
+    </collision>
+</link>
+<joint name='right_wheel_front_joint' type='revolute'>
+    <pose relative_to='right_wheel_front'/>
+    <parent>chassis</parent>
+    <child>right_wheel_front</child>
+    <axis>
+        <xyz expressed_in='__model__'>0 1 0</xyz>
+        <limit>
+            <lower>-1.79769e+308</lower>    <!--negative infinity-->
+            <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+<joint name='right_wheel_back_joint' type='revolute'>
+    <pose relative_to='right_wheel_back'/>
+    <parent>chassis</parent>
+    <child>right_wheel_back</child>
+    <axis>
+        <xyz expressed_in='__model__'>0 1 0</xyz>
+        <limit>
+            <lower>-1.79769e+308</lower>    <!--negative infinity-->
+            <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+<joint name='left_wheel_front_joint' type='revolute'>
+    <pose relative_to='left_wheel_front'/>
+    <parent>chassis</parent>
+    <child>left_wheel_front</child>
+    <axis>
+        <xyz expressed_in='__model__'>0 1 0</xyz>
+        <limit>
+            <lower>-1.79769e+308</lower>    <!--negative infinity-->
+            <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+<joint name='left_wheel_back_joint' type='revolute'>
+    <pose relative_to='left_wheel_back'/>
+    <parent>chassis</parent>
+    <child>left_wheel_back</child>
+    <axis>
+        <xyz expressed_in='__model__'>0 1 0</xyz>
+        <limit>
+            <lower>-1.79769e+308</lower>    <!--negative infinity-->
+            <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+       
+<joint name='base_rotation' type='revolute'>
+    <pose relative_to='body_a'/>
+    <parent>chassis</parent>
+    <child>body_a</child>
+    <axis>
+        <xyz expressed_in='__model__'>0 0 1</xyz>
+        <limit>
+            <lower>-1.79769e+308</lower>    <!--negative infinity-->
+            <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+<joint name='body_b_fixed' type='revolute'>
+    <pose relative_to='body_b'/>
+    <parent>body_a</parent>
+    <child>body_b</child>
+    <axis>
+        <xyz expressed_in='body_a'>0 0 1</xyz>
+        <limit>
+            <lower>0</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+    <axis>
+        <xyz expressed_in='body_a'>0 1 0</xyz>
+        <limit>
+            <lower>0</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+    <axis>
+        <xyz expressed_in='body_a'>1 0 0</xyz>
+        <limit>
+            <lower>0</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+<joint name='body_c_joint_fixed' type='revolute'>
+    <pose relative_to='body_c'/>
+    <parent>body_b</parent>
+    <child>body_c</child>
+    <axis>
+        <xyz expressed_in='body_b'>0 0 1</xyz>
+        <limit>
+            <lower>0</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+    <axis>
+        <xyz expressed_in='body_b'>0 1 0</xyz>
+        <limit>
+            <lower>0</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+    <axis>
+        <xyz expressed_in='body_b'>1 0 0</xyz>
+        <limit>
+            <lower>0</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+
+<joint name='gripper_end' type='revolute'>
+    <pose relative_to='body_e'/>
+    <parent>body_e</parent>
+    <child>body_d</child>
+    <axis>
+        <xyz expressed_in='body_e'>0 0 1</xyz>
+        <limit>
+            <lower>-1.79769e+308</lower>    <!--negative infinity-->
+            <upper>1.79769e+308</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+
+<joint name='telescopic_arm' type='prismatic'>
+    <pose relative_to='body_e'/>
+    <parent>body_c</parent>
+    <child>body_e</child>
+    <axis>
+        <xyz expressed_in='body_c'>0 0 1</xyz>
+        <limit>
+            <lower>-0.185</lower>    <!--negative infinity-->
+            <upper>0</upper>     <!--positive infinity-->
+        </limit>
+    </axis>
+</joint>
+
+
+
+</model>
+    </world>
+</sdf>
