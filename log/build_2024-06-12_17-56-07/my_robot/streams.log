@@ -1,0 +1,42 @@
+[0.415s] Invoking command in '/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/src/my_robot': PYTHONPATH=/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/prefix_override:/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/my_robot build --build-base /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build install --record /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/install.log --single-version-externally-managed install_data
+[0.551s] running egg_info
+[0.551s] creating ../../build/my_robot/my_robot.egg-info
+[0.551s] writing ../../build/my_robot/my_robot.egg-info/PKG-INFO
+[0.552s] writing dependency_links to ../../build/my_robot/my_robot.egg-info/dependency_links.txt
+[0.552s] writing entry points to ../../build/my_robot/my_robot.egg-info/entry_points.txt
+[0.552s] writing requirements to ../../build/my_robot/my_robot.egg-info/requires.txt
+[0.552s] writing top-level names to ../../build/my_robot/my_robot.egg-info/top_level.txt
+[0.552s] writing manifest file '../../build/my_robot/my_robot.egg-info/SOURCES.txt'
+[0.553s] reading manifest file '../../build/my_robot/my_robot.egg-info/SOURCES.txt'
+[0.554s] writing manifest file '../../build/my_robot/my_robot.egg-info/SOURCES.txt'
+[0.554s] running build
+[0.554s] running build_py
+[0.554s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build
+[0.554s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib
+[0.554s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot
+[0.554s] copying my_robot/spawn_rover.py -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot
+[0.554s] copying my_robot/movement.py -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot
+[0.554s] copying my_robot/__init__.py -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot
+[0.554s] running install
+[0.555s] running install_lib
+[0.555s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot
+[0.555s] copying /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot/spawn_rover.py -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot
+[0.555s] copying /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot/movement.py -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot
+[0.555s] copying /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build/lib/my_robot/__init__.py -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot
+[0.555s] byte-compiling /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot/spawn_rover.py to spawn_rover.cpython-310.pyc
+[0.555s] byte-compiling /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot/movement.py to movement.cpython-310.pyc
+[0.556s] byte-compiling /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot/__init__.py to __init__.cpython-310.pyc
+[0.556s] running install_data
+[0.556s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share
+[0.556s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share/ament_index
+[0.556s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share/ament_index/resource_index
+[0.556s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share/ament_index/resource_index/packages
+[0.556s] copying resource/my_robot -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share/ament_index/resource_index/packages
+[0.556s] creating /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share/my_robot
+[0.556s] copying package.xml -> /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/share/my_robot
+[0.556s] running install_egg_info
+[0.558s] Copying ../../build/my_robot/my_robot.egg-info to /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages/my_robot-0.0.0-py3.10.egg-info
+[0.558s] running install_scripts
+[0.571s] Installing movement script to /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/my_robot
+[0.571s] writing list of installed files to '/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/install.log'
+[0.586s] Invoked command in '/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/src/my_robot' returned '0': PYTHONPATH=/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/prefix_override:/home/rishith/MRT/MRT_ASSIGNMENT_6_updated/install/my_robot/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/my_robot build --build-base /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/build install --record /home/rishith/MRT/MRT_ASSIGNMENT_6_updated/build/my_robot/install.log --single-version-externally-managed install_data
